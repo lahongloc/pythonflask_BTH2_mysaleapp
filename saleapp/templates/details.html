@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CHI TIET SAN PHAM</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"/>
+</head>
+<body>
+    <div class="details_container">
+        <div class="current_product">
+            <img src="{{ url_for('static', filename=current_product.image)}}" />
+        </div>
+        <div class="details">
+            <h1>Tên sản phẩm: {{current_product.name}}</h1>
+            <p>Mã sản phẩm: {{current_product.id}}</p>
+            <p>Mô tả: {{current_product.description}}</p>
+            <p style="font-weight: 700">Giá {{ "{:,.1f}".format(current_product.price)}}</p>
+            <button class="cart_btn btn">Thêm vào giỏ hàng</button>
+            <button class="buy_btn btn">Mua ngay</button>
+        </div>
+    </div>
+    <h1>{{cate}}</h1>
+</body>
+</html>

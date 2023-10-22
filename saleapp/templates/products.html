@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DANH SÁCH SẢN PHẨM</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container">
+        <h1 class="subject">QUAN LY SAN PHAM</h1>
+        <form style="margin-bottom: 1rem;">
+            <label for="keyword"><b>Tìm kiếm theo tên sản phẩm:</b></label><br>
+            <input type="text" name="keyword" placeholder="Nhập tên sản phẩm.." />
+            <input type="submit" value="Tìm kiếm"/>
+        </form>
+
+        <form style="margin-bottom: 1rem;">
+            <label for="keyword"><b>Tìm kiếm theo mức giá:</b></b></label><br>
+            <label for="from_price">Từ</label>
+            <input type="number" name="from_price" placeholder="0" />
+            <label for="to_price">Đến</label>
+            <input type="number" name="to_price" placeholder="0" />
+            <input type="submit" value="Tìm kiếm"/>
+        </form>
+        <table class="products_list" border="1" class="products-list">
+            <tr>
+                <th></th>
+                <th>Ma san pham</th>
+                <th>Ten san pham</th>
+                <th>Mo ta</th>
+                <th>Gia ban</th>
+            </tr>
+            {% for p in products %}
+            <tr>
+                <td>
+                    <a href="/products/{{p.id}}">
+                        <img alt="{{p.name}}" src="{{url_for('static', filename=p.image)}}" width="120px" />
+                    </a>
+                </td>
+
+                <td>{{p.id}}</td>
+                <td style="font-weight: 700">{{p.name}}</td>
+                <td>{{p.description}}</td>
+                <td>{{ "{:,.1f}".format(p.price)}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+</html>
